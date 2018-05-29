@@ -78,7 +78,6 @@
     <Compile Include="Features\StepDefinitions\SearchSteps.cs" />
     <Compile Include="Pages\CommonPage.cs" />
     <Compile Include="Pages\SearchPage.cs" />
-    <Compile Include="Resources\Devices\Browser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

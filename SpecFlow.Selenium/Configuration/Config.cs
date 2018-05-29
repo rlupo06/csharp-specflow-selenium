@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
-using SpecFlow.Selenium.Resources.Devices;
 
 namespace SpecFlow.Selenium.Configuration
 {
@@ -14,9 +12,13 @@ namespace SpecFlow.Selenium.Configuration
 	{
 		public readonly String url;
 		public readonly DesiredCapabilities desiredCapabilities;
+
 		public Config()
 		{
 			this.url = Environment.GetEnvironmentVariable("seleniumGrid");
+			String deviceName = Environment.GetEnvironmentVariable("deviceName");
+
+
 			if (url == null)
 			{
 
@@ -24,85 +26,63 @@ namespace SpecFlow.Selenium.Configuration
 				this.url = Environment.GetEnvironmentVariable("seleniumGrid");
 			}
 
-			String deviceName = Environment.GetEnvironmentVariable("deviceName");
 			if (deviceName == null)
 			{
 				Environment.SetEnvironmentVariable("deviceName", "chrome");
 				deviceName = Environment.GetEnvironmentVariable("deviceName");
 			}
 
-			this.desiredCapabilities = getDevice(deviceName);
+			this.desiredCapabilities = getCapabilities(deviceName);
 		}
-        
-		private DesiredCapabilities getDevice(String deviceName)
+
+		public DesiredCapabilities getCapabilities(String deviceName)
 		{
+			String device = getDevice(deviceName);
+			Dictionary<string, Object> deviceDictionary = convertStringToDictionary(device);
 
-			//DesiredCapabilities capabilities = DesiredCapabilities.Chrome();
-            //DesiredCapabilities capabilities = new DesiredCapabilities();
-            //capabilities.setCapability("BrowserName", "chrome");
-            //ChromeOptions options = new ChromeOptions();
-            //options.AddArgument("--window-size=1920,1080");
-            //options.
+			if (deviceDictionary.ContainsKey("chromeOptions"))
+			{
+				ChromeOptions chromeOptions = getChromeOptions(deviceDictionary);
 
-            //return new RemoteWebDriver(url, options);
+				return chromeOptions.ToCapabilities() as DesiredCapabilities;
+			}
+			else
+			{
+				return new DesiredCapabilities(deviceDictionary);
+			}
+		}
 
+		public ChromeOptions getChromeOptions(Dictionary<string, object> desiredCapabilities)
+		{
+			JObject chromeOption = (JObject)desiredCapabilities["chromeOptions"];
 
+			JToken chromeOptionWindow = chromeOption["args"];
+
+			List<string> chromeOptions = JsonConvert.DeserializeObject<List<string>>(chromeOptionWindow.ToString());
+
+			ChromeOptions options = new ChromeOptions();
+
+			options.AddArguments(chromeOptions);
+
+			return options;
+		}
+
+		private String getDevice(String deviceName)
+		{
 
 			String json = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources/Devices/Devices.json"));
 
 			JObject devices = JObject.Parse(json);
-            
-			JToken device = devices[deviceName];
 
-			Dictionary<string, object> chromeOptions = JsonConvert.DeserializeObject<Dictionary<string, object>>(device.ToString());
-
-			JObject chromeOption =(JObject)chromeOptions["chromeOptions"];
-
-			JToken chromeOptionWindow = chromeOption["args"];
-
-			List<string> videogames = JsonConvert.DeserializeObject<List<string>>(chromeOptionWindow.ToString());
-
-
-			ChromeOptions options = new ChromeOptions();
-
-			options.AddArguments(videogames);
-
-			//options(htmlAttributes);
-
-
-			//ChromeOptions chromeOptions = new ChromeOptions();
-            //chromeOptions.AddArgument("test-type");
-            //capabilities = (DesiredCapabilities)chromeOptions.ToCapabilities();
-
-            //new RemoteWebDriver(hubUri, capabilities, TimeSpan.FromSeconds(180));
-
-
-
-
-
-
-
-			//Browser browser = new Browser();
-
-			//Browser browsers = (Browser)device.ToObject(browser.GetType());
-
-
-
-
-			//if (browsers.chromeOptions.args[0] != null)
-			//{
-
-			//	ChromeOptions options = new ChromeOptions();
-			//	options.AddArguments(browsers.chromeOptions.args);
-			//	desiredCapabilities.SetCapability(ChromeOptions.Capability, options);
-			//}
-			//desiredCapabilities.SetCapability("browserName", browsers.browserName);
-              
-			return desiredCapabilities;
-
-
-
+			return devices[deviceName].ToString();
 		}
+
+
+		private Dictionary<String, Object> convertStringToDictionary(String device)
+		{
+			return JsonConvert.DeserializeObject<Dictionary<string, object>>(device);
+		}
+
+
 	}
 }
-
