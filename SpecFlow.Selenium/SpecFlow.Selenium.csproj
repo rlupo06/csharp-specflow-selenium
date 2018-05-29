@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{26BFA3AA-18FD-4A84-B455-2FA55411D35C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SpecFlow.Selenium</RootNamespace>
+    <AssemblyName>SpecFlow.Selenium</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.3.0.0\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="TechTalk.SpecFlow">
+      <HintPath>..\packages\SpecFlow.2.1.0\lib\net45\TechTalk.SpecFlow.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver">
+      <HintPath>..\packages\Selenium.WebDriver.3.12.0\lib\net45\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\packages\Selenium.Support.3.12.0\lib\net45\WebDriver.Support.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="App.config" />
+    <None Include="Resources\Devices\Devices.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Demo.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Demo.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Docker\docker-compose.yml" />
+    <None Include=".gitignore" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Features\" />
+    <Folder Include="Features\StepDefinitions\" />
+    <Folder Include="Features\Support\" />
+    <Folder Include="Pages\" />
+    <Folder Include="Driver\" />
+    <Folder Include="Configuration\" />
+    <Folder Include="Resources\" />
+    <Folder Include="Resources\Devices\" />
+    <Folder Include="Docker\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Features\Support\Hooks.cs" />
+    <Compile Include="Driver\DriverFactory.cs" />
+    <Compile Include="Configuration\Config.cs" />
+    <Compile Include="Features\Demo.feature.cs">
+      <DependentUpon>Demo.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\StepDefinitions\CommonSteps.cs" />
+    <Compile Include="Features\StepDefinitions\SearchSteps.cs" />
+    <Compile Include="Pages\CommonPage.cs" />
+    <Compile Include="Pages\SearchPage.cs" />
+    <Compile Include="Resources\Devices\Browser.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
