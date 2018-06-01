@@ -81,8 +81,6 @@ namespace SpecFlow.Selenium.Configuration
 		private Dictionary<String, Object> convertStringToDictionary(String device)
 		{
 			return JsonConvert.DeserializeObject<Dictionary<string, object>>(device);
-		}
-
-
+		}      
 	}
 }
