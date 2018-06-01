@@ -55,6 +55,10 @@
     </None>
     <None Include="Docker\docker-compose.yml" />
     <None Include=".gitignore" />
+    <None Include="Features\DemoTwo.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DemoTwo.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
@@ -66,6 +70,7 @@
     <Folder Include="Resources\" />
     <Folder Include="Resources\Devices\" />
     <Folder Include="Docker\" />
+    <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Features\Support\Hooks.cs" />
@@ -78,6 +83,10 @@
     <Compile Include="Features\StepDefinitions\SearchSteps.cs" />
     <Compile Include="Pages\CommonPage.cs" />
     <Compile Include="Pages\SearchPage.cs" />
+    <Compile Include="Features\DemoTwo.feature.cs">
+      <DependentUpon>DemoTwo.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
