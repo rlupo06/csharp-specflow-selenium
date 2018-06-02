@@ -22,9 +22,7 @@ In Powershell run the following commands
    ```npm install selenium-standalone -g```
  
    ```selenium-standalone install```
- 
-   ```selenium-standalone start```
- 
+  
 # Setup - Windows
 	Download and install Visual Studio
 
@@ -40,10 +38,17 @@ Tools => Extensions
 * Specflow flow Visual Studio
 	
 ### Running
+
+Start the selenium server
+* In Powershell run
+
+	```selenium-standalone start```
+
+
 #### IDE
 * Build
 * Visual Studio: Tests => Windows => Test Explorer
 
 #### Local Execution
 
-```nunit3-console.exe "\pathToProject\Specflow.RestSharp.csproj" --where "cat=TagYouWantToRun"```
+```nunit3-console.exe "\pathToProject\Specflow.Selenium.csproj" --where "cat=TagYouWantToRun"```
