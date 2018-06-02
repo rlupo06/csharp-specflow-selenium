@@ -49,44 +49,43 @@
     <None Include="Resources\Devices\Devices.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Features\Demo.feature">
+    <None Include="Docker\docker-compose.yml" />
+    <None Include=".gitignore" />
+    <None Include="Cucumber\Features\Demo.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Demo.feature.cs</LastGenOutput>
     </None>
-    <None Include="Docker\docker-compose.yml" />
-    <None Include=".gitignore" />
-    <None Include="Features\DemoTwo.feature">
+    <None Include="Cucumber\Features\DemoTwo.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DemoTwo.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\" />
-    <Folder Include="Features\StepDefinitions\" />
-    <Folder Include="Features\Support\" />
-    <Folder Include="Pages\" />
     <Folder Include="Driver\" />
     <Folder Include="Configuration\" />
     <Folder Include="Resources\" />
     <Folder Include="Resources\Devices\" />
     <Folder Include="Docker\" />
     <Folder Include="Properties\" />
+    <Folder Include="Cucumber\" />
+    <Folder Include="Cucumber\Features\" />
+    <Folder Include="Cucumber\Pages\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Features\Support\Hooks.cs" />
     <Compile Include="Driver\DriverFactory.cs" />
     <Compile Include="Configuration\Config.cs" />
-    <Compile Include="Features\Demo.feature.cs">
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Cucumber\Features\Demo.feature.cs">
       <DependentUpon>Demo.feature</DependentUpon>
     </Compile>
-    <Compile Include="Features\StepDefinitions\CommonSteps.cs" />
-    <Compile Include="Features\StepDefinitions\SearchSteps.cs" />
-    <Compile Include="Pages\CommonPage.cs" />
-    <Compile Include="Pages\SearchPage.cs" />
-    <Compile Include="Features\DemoTwo.feature.cs">
+    <Compile Include="Cucumber\Features\DemoTwo.feature.cs">
       <DependentUpon>DemoTwo.feature</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Cucumber\Features\StepDefinitions\CommonSteps.cs" />
+    <Compile Include="Cucumber\Features\StepDefinitions\SearchSteps.cs" />
+    <Compile Include="Cucumber\Features\Support\Hooks.cs" />
+    <Compile Include="Cucumber\Pages\CommonPage.cs" />
+    <Compile Include="Cucumber\Pages\SearchPage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

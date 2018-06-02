@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SpecFlow.Selenium.Features
+namespace SpecFlow.Selenium.Cucumber.Features
 {
     using TechTalk.SpecFlow;
     
