@@ -2,20 +2,31 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
+using SeleniumExtras.PageObjects;
 
 namespace SpecFlow.Selenium.Pages
 {
-	public class SearchPage
-
+	public class SearchPage : PageObject
+    
 	{
-		private readonly IWebDriver driver;
+		[FindsBy(How = How.CssSelector, Using = "input[value='Google Search']")]
+        private IWebElement searchButton;
 
-		public SearchPage(IWebDriver driver)
+        [FindsBy(How = How.CssSelector, Using = "#lst-ib")]
+        private IWebElement searchBox;
+
+        [FindsBy(How = How.CssSelector, Using = "#ires .g .r a")]
+        private IList<IWebElement> searchResults;
+        
+		public SearchPage(IWebDriver driver) : base(driver)
 		{
-			this.driver = driver;
-			PageFactory.InitElements(this.driver, this);
+			trait();
 		}
+
+		public override void trait()
+        {
+			Assert.IsTrue(searchButton.Displayed);
+        }
 
 		public void PerformSearch(string searchText)
 		{
@@ -41,13 +52,6 @@ namespace SpecFlow.Selenium.Pages
 				}
 			}
 			return null;
-		}
-
-		// ---- Decorated selectors ---- //
-		[FindsBy(How = How.CssSelector, Using = "#lst-ib")]
-		private IWebElement searchBox;
-
-		[FindsBy(How = How.CssSelector, Using = "#ires .g .r a")]
-		private IList<IWebElement> searchResults;
+		}      
 	}
 }

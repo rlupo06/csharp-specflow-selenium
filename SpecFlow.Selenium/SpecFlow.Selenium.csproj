@@ -42,6 +42,9 @@
     <Reference Include="WebDriver.Support">
       <HintPath>..\packages\Selenium.Support.3.12.0\lib\net45\WebDriver.Support.dll</HintPath>
     </Reference>
+    <Reference Include="SeleniumExtras.PageObjects">
+      <HintPath>..\packages\DotNetSeleniumExtras.PageObjects.3.11.0\lib\net45\SeleniumExtras.PageObjects.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -51,11 +54,11 @@
     </None>
     <None Include="Docker\docker-compose.yml" />
     <None Include=".gitignore" />
-    <None Include="Cucumber\Features\Demo.feature">
+    <None Include="Cucumber\Features\Search.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Demo.feature.cs</LastGenOutput>
+      <LastGenOutput>Search.feature.cs</LastGenOutput>
     </None>
-    <None Include="Cucumber\Features\DemoTwo.feature">
+    <None Include="Cucumber\Features\Terms.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DemoTwo.feature.cs</LastGenOutput>
     </None>
@@ -70,22 +73,22 @@
     <Folder Include="Cucumber\" />
     <Folder Include="Cucumber\Features\" />
     <Folder Include="Cucumber\Pages\" />
+    <Folder Include="Cucumber\Pages\Client\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Driver\DriverFactory.cs" />
     <Compile Include="Configuration\Config.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Cucumber\Features\Demo.feature.cs">
-      <DependentUpon>Demo.feature</DependentUpon>
+    <Compile Include="Cucumber\Features\Search.feature.cs">
+      <DependentUpon>Search.feature</DependentUpon>
     </Compile>
-    <Compile Include="Cucumber\Features\DemoTwo.feature.cs">
-      <DependentUpon>DemoTwo.feature</DependentUpon>
+    <Compile Include="Cucumber\Features\Terms.feature.cs">
+      <DependentUpon>Terms.feature</DependentUpon>
     </Compile>
-    <Compile Include="Cucumber\Features\StepDefinitions\CommonSteps.cs" />
     <Compile Include="Cucumber\Features\StepDefinitions\SearchSteps.cs" />
     <Compile Include="Cucumber\Features\Support\Hooks.cs" />
-    <Compile Include="Cucumber\Pages\CommonPage.cs" />
     <Compile Include="Cucumber\Pages\SearchPage.cs" />
+    <Compile Include="Cucumber\Pages\Client\PageObject.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

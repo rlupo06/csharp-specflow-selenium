@@ -28,5 +28,11 @@ namespace SpecFlow.Selenium.Features.StepDefinitions
 		{
 			page.SelectResult(expectedLink);
 		}
+
+		[Then(@"I am presented with the ""(.*)"" homepage")]
+        public void ThenIAmPresentedWithTheHomepage(string expectedUrl)
+        {
+            page.CheckUrl(expectedUrl);
+        }
 	}
 }
