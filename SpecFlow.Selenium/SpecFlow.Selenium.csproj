@@ -52,28 +52,28 @@
     <None Include="Resources\Devices\Devices.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Docker\docker-compose.yml" />
     <None Include=".gitignore" />
     <None Include="Cucumber\Features\Search.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Search.feature.cs</LastGenOutput>
     </None>
-    <None Include="Cucumber\Features\Terms.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>DemoTwo.feature.cs</LastGenOutput>
-    </None>
+    <None Include="Grid\Docker\docker-compose.yml" />
+    <None Include="Grid\Nodes\Safari.json" />
+    <None Include="Grid\Nodes\InternetExplorer.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Driver\" />
     <Folder Include="Configuration\" />
     <Folder Include="Resources\" />
     <Folder Include="Resources\Devices\" />
-    <Folder Include="Docker\" />
     <Folder Include="Properties\" />
     <Folder Include="Cucumber\" />
     <Folder Include="Cucumber\Features\" />
     <Folder Include="Cucumber\Pages\" />
     <Folder Include="Cucumber\Pages\Client\" />
+    <Folder Include="Grid\" />
+    <Folder Include="Grid\Docker\" />
+    <Folder Include="Grid\Nodes\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Driver\DriverFactory.cs" />
@@ -81,9 +81,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Cucumber\Features\Search.feature.cs">
       <DependentUpon>Search.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Cucumber\Features\Terms.feature.cs">
-      <DependentUpon>Terms.feature</DependentUpon>
     </Compile>
     <Compile Include="Cucumber\Features\StepDefinitions\SearchSteps.cs" />
     <Compile Include="Cucumber\Features\Support\Hooks.cs" />
