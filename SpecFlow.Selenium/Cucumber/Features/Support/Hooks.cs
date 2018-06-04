@@ -11,14 +11,14 @@ namespace SpecFlow.Selenium.Features.Support
 	public sealed class Hooks
 	{
 
-		private readonly IObjectContainer objectCContainer;
+		private readonly IObjectContainer objectContainer;
 		private IWebDriver driver;
 		private static DriverFactory driverFactory;
 		private static String applicationUrl = "https://www.google.com/";
 
 		public Hooks(IObjectContainer objectContainer)
 		{
-			this.objectCContainer = objectContainer;
+			this.objectContainer = objectContainer;
 		}
 
 		[BeforeTestRun]
@@ -37,7 +37,7 @@ namespace SpecFlow.Selenium.Features.Support
 			driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
 			driver.Navigate().GoToUrl(applicationUrl);
 
-			objectCContainer.RegisterInstanceAs(driver);
+			objectContainer.RegisterInstanceAs(driver);
 
 		}
 

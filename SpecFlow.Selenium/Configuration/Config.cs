@@ -32,17 +32,17 @@ namespace SpecFlow.Selenium.Configuration
 				deviceName = Environment.GetEnvironmentVariable("deviceName");
 			}
 
-			this.desiredCapabilities = getCapabilities(deviceName);
+			this.desiredCapabilities = GetCapabilities(deviceName);
 		}
 
-		public DesiredCapabilities getCapabilities(String deviceName)
+		public DesiredCapabilities GetCapabilities(String deviceName)
 		{
-			String device = getDevice(deviceName);
-			Dictionary<string, Object> deviceDictionary = convertStringToDictionary(device);
+			String device = GetDevice(deviceName);
+			Dictionary<string, Object> deviceDictionary = ConvertStringToDictionary(device);
 
 			if (deviceDictionary.ContainsKey("chromeOptions"))
 			{
-				ChromeOptions chromeOptions = getChromeOptions(deviceDictionary);
+				ChromeOptions chromeOptions = GetChromeOptions(deviceDictionary);
 
 				return chromeOptions.ToCapabilities() as DesiredCapabilities;
 			}
@@ -52,7 +52,7 @@ namespace SpecFlow.Selenium.Configuration
 			}
 		}
 
-		public ChromeOptions getChromeOptions(Dictionary<string, object> desiredCapabilities)
+		public ChromeOptions GetChromeOptions(Dictionary<string, object> desiredCapabilities)
 		{
 			JObject chromeOption = (JObject)desiredCapabilities["chromeOptions"];
 
@@ -67,7 +67,7 @@ namespace SpecFlow.Selenium.Configuration
 			return options;
 		}
 
-		private String getDevice(String deviceName)
+		private String GetDevice(String deviceName)
 		{
 
 			String json = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources/Devices/Devices.json"));
@@ -78,7 +78,7 @@ namespace SpecFlow.Selenium.Configuration
 		}
 
 
-		private Dictionary<String, Object> convertStringToDictionary(String device)
+		private Dictionary<String, Object> ConvertStringToDictionary(String device)
 		{
 			return JsonConvert.DeserializeObject<Dictionary<string, object>>(device);
 		}      
