@@ -33,7 +33,7 @@ namespace SpecFlow.Selenium.Features.Support
 		[BeforeScenario]
 		public void BeforeScenario()
 		{
-			this.driver = driverFactory.createDriver();
+			this.driver = driverFactory.CreateDriver();
 			driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
 			driver.Navigate().GoToUrl(applicationUrl);
 

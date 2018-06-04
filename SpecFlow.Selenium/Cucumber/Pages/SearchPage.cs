@@ -20,10 +20,10 @@ namespace SpecFlow.Selenium.Pages
         
 		public SearchPage(IWebDriver driver) : base(driver)
 		{
-			trait();
+			Trait();
 		}
 
-		public override void trait()
+		public override void Trait()
         {
 			Assert.IsTrue(searchButton.Displayed);
         }

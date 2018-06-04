@@ -24,7 +24,7 @@ namespace SpecFlow.Selenium.Pages
 			PageFactory.InitElements(retry.SearchContext, this, decor);
 		}
 
-		public abstract void trait();
+		public abstract void Trait();
 
 		public void CheckUrl(string expectedUrl)
 		{
@@ -32,12 +32,12 @@ namespace SpecFlow.Selenium.Pages
 			Assert.AreEqual(expectedUrl, actualUrl);
 		}
               
-		public void waitForAjax()
+		public void WaitForAjax()
 		{
 			try
 			{
-				waitForAjaxToStart();
-				waitForAjaxToFinish();
+				WaitForAjaxToStart();
+				WaitForAjaxToFinish();
 			}
 			catch (WebDriverException e)
 			{
@@ -45,14 +45,14 @@ namespace SpecFlow.Selenium.Pages
 			}
 		}
 
-		private void waitForAjaxToStart()
+		private void WaitForAjaxToStart()
         {
 			WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
             wait.Until(driver => !(Boolean)((IJavaScriptExecutor)driver).ExecuteScript("return jQuery.active == 0"));
 
         }
 
-		private void waitForAjaxToFinish()
+		private void WaitForAjaxToFinish()
 		{
 			WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
 			wait.Until(driver => (Boolean)((IJavaScriptExecutor)driver).ExecuteScript("return jQuery.active == 0"));

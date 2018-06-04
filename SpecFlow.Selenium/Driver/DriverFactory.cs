@@ -16,7 +16,7 @@ namespace SpecFlow.Selenium.Driver
 			this.desiredCapabilities = desiredCapabilities;
 		}
 
-		public RemoteWebDriver createDriver()
+		public RemoteWebDriver CreateDriver()
 		{
 			return new RemoteWebDriver(url, desiredCapabilities);
 		}
